@@ -1,4 +1,4 @@
-import { CharacterClass } from "./CharcaterClass"
+import { CharacterClass } from "./CharacterClass"
 import { Health } from "./Health"
 import { Level } from "./Level"
 
