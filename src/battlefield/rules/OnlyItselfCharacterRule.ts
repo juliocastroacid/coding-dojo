@@ -4,10 +4,10 @@ import { HealthRule } from "../HealthRule"
 
 export class OnlyItselfCharacterRule implements HealthRule {
   apply(
-    atacker: Character,
+    attacker: Character,
     defender: Character,
     { amount }: BattleOptions,
   ): number {
-    return atacker === defender ? amount : 0
+    return attacker === defender ? amount : 0
   }
 }

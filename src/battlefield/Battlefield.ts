@@ -2,6 +2,7 @@ import { Character } from "../characters/Character"
 import { BattleOptions } from "./BattleOptions"
 import { HealthRule } from "./HealthRule"
 import { DeadhCharacterRule } from "./rules/DeadCharacterRule"
+import { LevelCharacterRule } from "./rules/LevelCharacterRule"
 import { OnlyItselfCharacterRule } from "./rules/OnlyItselfCharacterRule"
 import { OnlyOtherCharactersRule } from "./rules/OnlyOtherCharactersRule"
 import { RangeCharacterRule } from "./rules/RangeCharacterRule"
@@ -11,6 +12,16 @@ export class Battlefield {
     private readonly attackRules: HealthRule[] = [
       new OnlyOtherCharactersRule(),
       new RangeCharacterRule(),
+      new LevelCharacterRule(
+        50,
+        (attackerLevel, defenderLevel) =>
+          attackerLevel.distance(defenderLevel) >= 5,
+      ),
+      new LevelCharacterRule(
+        -50,
+        (attackerLevel, defenderLevel) =>
+          attackerLevel.distance(defenderLevel) < 5,
+      ),
     ],
     private readonly healRules: HealthRule[] = [
       new DeadhCharacterRule(),

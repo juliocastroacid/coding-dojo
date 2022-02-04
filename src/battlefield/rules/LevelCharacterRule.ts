@@ -6,15 +6,18 @@ import { HealthRule } from "../HealthRule"
 export class LevelCharacterRule implements HealthRule {
   constructor(
     private readonly percentageToApply: number = 50,
-    private readonly conditionToApply: (level: Level) => boolean,
+    private readonly conditionToApply: (
+      attackerLevel: Level,
+      defenderLevel: Level,
+    ) => boolean,
   ) {}
 
   apply(
-    _atacker: Character,
+    attacker: Character,
     defender: Character,
     { amount }: BattleOptions,
   ): number {
-    return this.conditionToApply(defender.getLevel())
+    return this.conditionToApply(attacker.getLevel(), defender.getLevel())
       ? amount + amount * this.percentageToApply
       : amount
   }

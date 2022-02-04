@@ -4,7 +4,7 @@ import { HealthRule } from "../HealthRule"
 
 export class DeadhCharacterRule implements HealthRule {
   apply(
-    _atacker: Character,
+    _attacker: Character,
     defender: Character,
     { amount }: BattleOptions,
   ): number {

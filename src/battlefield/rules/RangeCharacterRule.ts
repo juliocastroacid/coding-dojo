@@ -4,10 +4,10 @@ import { HealthRule } from "../HealthRule"
 
 export class RangeCharacterRule implements HealthRule {
   apply(
-    atacker: Character,
+    attacker: Character,
     _defender: Character,
     { amount, distance }: BattleOptions,
   ): number {
-    return atacker.isInRange(distance) ? amount : 0
+    return attacker.isInRange(distance) ? amount : 0
   }
 }
