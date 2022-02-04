@@ -1,5 +1,6 @@
 import { Character } from "./Character"
 import { Health } from "./Health"
+import { Level } from "./Level"
 
 describe("Character", () => {
   let character: Character
@@ -38,7 +39,37 @@ describe("Character", () => {
         expect(attackedCharacter.isAlive()).toEqual(false)
       })
     })
+
+    describe("and we heal a dead character", () => {
+      let deadCharacter: Character
+
+      beforeEach(() => {
+        deadCharacter = new Character(new Health(0), new Level(1))
+      })
+
+      it("if character is dead, we cannot heal it", () => {
+        const healedCharacter = character.heal(deadCharacter, 1_000)
+
+        expect(healedCharacter.isAlive()).toEqual(false)
+      })
+    })
   })
+
+  describe('if we heal a character more than max health', () => {
+    let healedCharacter: Character
+
+    beforeEach(() => {
+      healedCharacter = new Character()
+    })
+
+    it('the health remains equal', () => {
+      healedCharacter = character.heal(healedCharacter, 1_000)
+      healedCharacter = character.attack(healedCharacter, 1_000)
+
+      expect(healedCharacter.isAlive()).toEqual(false)
+    })
+  })
+
 
   describe("when a character with 0 health is created", () => {
     beforeEach(() => {

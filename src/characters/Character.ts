@@ -18,8 +18,14 @@ export class Character {
   }
 
   heal(character: Character, healAmount: number) {
+    if(!character.isAlive()) return character
+    
     const newHealth = this.health.add(healAmount)
 
     return new Character(newHealth, character.level)
+  }
+
+  hasLevel(level: Level) {
+    return this.level.equals(level)
   }
 }
