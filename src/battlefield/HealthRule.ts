@@ -1,5 +1,6 @@
-import { Character } from "../characters/Character";
+import { Character } from "../characters/Character"
+import { BattleOptions } from "./BattleOptions"
 
 export interface HealthRule {
-    apply(atacker: Character, defender: Character, amount: number): number 
+  apply(atacker: Character, defender: Character, options: BattleOptions): number
 }

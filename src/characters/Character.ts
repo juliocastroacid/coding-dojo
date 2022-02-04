@@ -1,8 +1,10 @@
+import { CharacterClass } from "./CharcaterClass"
 import { Health } from "./Health"
 import { Level } from "./Level"
 
 export class Character {
   constructor(
+    private readonly range: CharacterClass,
     private readonly health: Health = new Health(1000),
     private readonly level: Level = new Level(1),
   ) {}
@@ -14,18 +16,26 @@ export class Character {
   attack(character: Character, damageAmount: number) {
     const newHealth = this.health.sub(damageAmount)
 
-    return new Character(newHealth, character.level)
+    return new Character(character.range, newHealth, character.level)
   }
 
   heal(character: Character, healAmount: number) {
-    if(!character.isAlive()) return character
-    
+    if (!character.isAlive()) return character
+
     const newHealth = this.health.add(healAmount)
 
-    return new Character(newHealth, character.level)
+    return new Character(character.range, newHealth, character.level)
   }
 
   hasLevel(level: Level) {
     return this.level.equals(level)
+  }
+
+  getLevel(): Level {
+    return this.level
+  }
+
+  isInRange(distance: number) {
+    return this.range >= distance
   }
 }

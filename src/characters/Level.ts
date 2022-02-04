@@ -6,4 +6,8 @@ export class Level {
   equals(level: Level) {
     return this === level
   }
+
+  isGreater(level: Level) {
+    return level.level > this.level
+  }
 }
