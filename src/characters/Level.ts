@@ -11,6 +11,10 @@ export class Level {
     return level.level > this.level
   }
 
+  isLower(level: Level) {
+    return level.level < this.level
+  }
+
   distance(level: Level) {
     return Math.abs(level.level - this.level)
   }

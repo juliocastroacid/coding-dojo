@@ -15,12 +15,14 @@ export class Battlefield {
       new LevelCharacterRule(
         50,
         (attackerLevel, defenderLevel) =>
-          attackerLevel.distance(defenderLevel) >= 5,
+          attackerLevel.isGreater(defenderLevel) &&
+          attackerLevel.distance(defenderLevel) > 5,
       ),
       new LevelCharacterRule(
         -50,
         (attackerLevel, defenderLevel) =>
-          attackerLevel.distance(defenderLevel) < 5,
+          attackerLevel.isLower(defenderLevel) &&
+          attackerLevel.distance(defenderLevel) >= 5,
       ),
     ],
     private readonly healRules: HealthRule[] = [
